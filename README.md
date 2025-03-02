@@ -1,4 +1,5 @@
 # eMCP
+
 <div>
   <img src="https://badgen.net/badge/version/1.0.0/orange">
   <a href="https://www.npmjs.com/package/emcp" target="_blank">
@@ -19,9 +20,17 @@ This is designed to be a near drop-in replacement for tools like LiteMCP. Becaus
 
 ## Quickstart
 
+Install via Bun or NPM:
+
+```bash
+npm i emcp
+# or use Bun (preferred)
+bun add emcp
+```
+
 ### Basic Usage
 
-Run the examples:
+(Optional) Run the examples:
 
 ```bash
 bun run example:basic
