@@ -1,4 +1,11 @@
 # eMCP
+<div>
+  <img src="https://badgen.net/badge/version/1.0.0/orange">
+  <a href="https://www.npmjs.com/package/emcp" target="_blank">
+    <img src="https://img.shields.io/npm/v/emcp">
+  </a>
+</div>
+<br>
 
 A fork of the [LiteMCP](https://github.com/wong2/litemcp) TS library with extended features like built-in authentication handling, and custom middleware.
 
