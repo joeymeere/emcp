@@ -1,0 +1,28 @@
+{
+  "name": "@arrangedev/emcp",
+  "description": "A fork of LiteMCP that includes features like built-in authentication and custom middleware.",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "build": "bun build ./src/index.ts --outdir ./dist --target node",
+    "start": "bun run src/index.ts",
+    "dev": "bun run --watch src/index.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.3.2",
+    "citty": "^0.1.6",
+    "execa": "^9.5.2",
+    "mcp-proxy": "^2.4.0",
+    "type-fest": "^4.36.0",
+    "zod-to-json-schema": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "*",
+    "@types/pg": "*",
+    "bun-types": "latest",
+    "typescript": "*",
+    "zod": "^3.24.1"
+  }
+}
