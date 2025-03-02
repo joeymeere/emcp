@@ -1,5 +1,5 @@
 {
-  "name": "@arrangedev/emcp",
+  "name": "emcp",
   "description": "A fork of LiteMCP that includes features like built-in authentication and custom middleware.",
   "version": "1.0.0",
   "type": "module",
