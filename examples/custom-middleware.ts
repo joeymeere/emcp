@@ -34,6 +34,7 @@ const server = new eMCP("mcp-server-with-middleware", "1.0.0", {
     return true;
   },
 });
+console.log("Initializing mcp-server-with-middleware...");
 
 // This will time entire req -> res cycle, including middlewares
 server.use(async (request, next) => {
@@ -51,6 +52,7 @@ server.use(async (request, next) => {
 
   return response;
 });
+console.log("Registered 'Timer' middleware");
 
 // This will log incoming requests
 server.use(async (request, next) => {
@@ -59,7 +61,7 @@ server.use(async (request, next) => {
   server.logger.debug("Response sent", response);
   return response;
 });
-
+console.log("Registered 'Logger' middleware");
 // This will check request headers
 server.use(async (request, next) => {
   const params = request.params;
@@ -72,6 +74,7 @@ server.use(async (request, next) => {
   server.logger.debug("We're about to send a response!");
   return response;
 });
+console.log("Registered 'Header checker' middleware");
 
 // Middlewares will run before this tool is executed
 server.addTool({
@@ -86,5 +89,6 @@ server.addTool({
     return args.a + args.b;
   },
 });
+console.log("Added 'add' tool");
 
 server.start();

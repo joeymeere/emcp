@@ -14,6 +14,15 @@ This is designed to be a near drop-in replacement for tools like LiteMCP. Becaus
 
 ### Basic Usage
 
+Run the examples:
+
+```bash
+bun run example:basic
+bun run example:auth
+bun run example:middleware
+bun run example:advanced
+```
+
 ```ts
 const server = new eMCP("mcp-server-with-auth", "1.0.0", {
   authenticationHandler: async (request) => {

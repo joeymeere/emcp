@@ -12,6 +12,7 @@ const server = new eMCP("mcp-server-with-auth", "1.0.0", {
     return true;
   },
 });
+console.log("Initializing mcp-server-with-auth...");
 
 // Request to this tool, or any other resource or prompt will
 // require authentication governed by the handler
@@ -27,5 +28,12 @@ server.addTool({
     return args.a + args.b;
   },
 });
+console.log("Added 'add' tool");
 
-server.start();
+server.start({
+  transportType: "sse",
+  sse: {
+    endpoint: "/sse",
+    port: 8120,
+  },
+});

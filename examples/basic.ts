@@ -3,6 +3,7 @@ import { eMCP } from "../src/index.js";
 
 // Can be used in the same ways as LiteMCP
 const server = new eMCP("basic-mcp-server", "1.0.0");
+console.log("Initializing basic-mcp-server...");
 
 server.addTool({
   name: "add",
@@ -16,6 +17,7 @@ server.addTool({
     return args.a + args.b;
   },
 });
+console.log("Added 'add' tool");
 
 server.addResource({
   uri: "file:///logs/app.log",
@@ -27,6 +29,7 @@ server.addResource({
     };
   },
 });
+console.log("Added 'Application Logs' resource");
 
 server.addPrompt({
   name: "git-commit",
@@ -42,5 +45,6 @@ server.addPrompt({
     return `Generate a concise but descriptive commit message for these changes:\n\n${args.changes}`;
   },
 });
+console.log("Added 'git-commit' prompt");
 
 server.start();

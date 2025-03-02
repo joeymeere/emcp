@@ -2,6 +2,7 @@ import { eMCP } from "../src/index.js";
 import { z } from "zod";
 
 const server = new eMCP("advanced-example", "1.0.0");
+console.log("Initializing advanced-example...");
 
 server.addTool({
   name: "greet",
@@ -13,6 +14,7 @@ server.addTool({
     return `Hello ${args.name}!`;
   },
 });
+console.log("Added 'greet' tool");
 
 server.use(async (request, next) => {
   const startTime = Date.now();
@@ -28,7 +30,7 @@ server.use(async (request, next) => {
 
   return response;
 });
-
+console.log("Registered 'Request Logger' middleware");
 server.use(async (request, next) => {
   const params = request.params;
   if (!params.lifecycle) {
@@ -53,11 +55,12 @@ server.use(async (request, next) => {
 
   return response;
 });
+console.log("Registered 'Response Logger' middleware");
 
 server.start({
   transportType: "sse",
   sse: {
-    endpoint: "/mcp",
-    port: 3000,
+    endpoint: "/sse",
+    port: 8120,
   },
 });

@@ -7,8 +7,10 @@
   "types": "./src/index.ts",
   "scripts": {
     "build": "bun build ./src/index.ts --outdir ./dist --target node",
-    "start": "bun run src/index.ts",
-    "dev": "bun run --watch src/index.ts"
+    "example:basic": "bun run examples/basic.ts",
+    "example:auth": "bun run examples/auth.ts",
+    "example:middleware": "bun run examples/custom-middleware.ts",
+    "example:advanced": "bun run examples/advanced.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.3.2",
