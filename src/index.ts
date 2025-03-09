@@ -28,6 +28,8 @@ import {
   ToolParameters,
 } from "./types.js";
 
+export * from "./types.js";
+
 export class eMCP {
   public logger: Logger;
   #tools: Tool[];
@@ -41,7 +43,7 @@ export class eMCP {
     public version: string,
     options?: {
       authenticationHandler?: AuthenticationHandler;
-    },
+    }
   ) {
     this.logger = new Logger();
     this.#tools = [];
@@ -54,7 +56,7 @@ export class eMCP {
         if (!isAuthenticated) {
           throw new McpError(
             eMCPError.Unauthorized,
-            "Request authentication failed",
+            "Request authentication failed"
           );
         }
         return next();
@@ -68,7 +70,7 @@ export class eMCP {
 
   private async executeMiddlewarePipeline(
     request: MCPRequest,
-    handler: (request: MCPRequest) => Promise<MCPResponse>,
+    handler: (request: MCPRequest) => Promise<MCPResponse>
   ): Promise<MCPResponse> {
     const context: MiddlewareContext = {
       request,
@@ -95,7 +97,7 @@ export class eMCP {
         }
         throw new McpError(
           eMCPError.InternalError,
-          `Middleware error: ${error}`,
+          `Middleware error: ${error}`
         );
       }
     };
@@ -171,12 +173,12 @@ export class eMCP {
     });
     server.setRequestHandler(CallToolRequestSchema, async (request) => {
       const tool = this.#tools.find(
-        (tool) => tool.name === request.params.name,
+        (tool) => tool.name === request.params.name
       );
       if (!tool) {
         throw new McpError(
           ErrorCode.MethodNotFound,
-          `Unknown tool: ${request.params.name}`,
+          `Unknown tool: ${request.params.name}`
         );
       }
       let args: any = undefined;
@@ -185,7 +187,7 @@ export class eMCP {
         if (!parsed.success) {
           throw new McpError(
             ErrorCode.InvalidRequest,
-            `Invalid ${request.params.name} arguments`,
+            `Invalid ${request.params.name} arguments`
           );
         }
         args = parsed.data;
@@ -224,12 +226,12 @@ export class eMCP {
     });
     server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
       const resource = this.#resources.find(
-        (resource) => resource.uri === request.params.uri,
+        (resource) => resource.uri === request.params.uri
       );
       if (!resource) {
         throw new McpError(
           ErrorCode.MethodNotFound,
-          `Unknown resource: ${request.params.uri}`,
+          `Unknown resource: ${request.params.uri}`
         );
       }
       let result: Awaited<ReturnType<Resource["load"]>>;
@@ -241,7 +243,7 @@ export class eMCP {
           `Error reading resource: ${error}`,
           {
             uri: resource.uri,
-          },
+          }
         );
       }
       return {
@@ -270,12 +272,12 @@ export class eMCP {
     });
     server.setRequestHandler(GetPromptRequestSchema, async (request) => {
       const prompt = this.#prompts.find(
-        (prompt) => prompt.name === request.params.name,
+        (prompt) => prompt.name === request.params.name
       );
       if (!prompt) {
         throw new McpError(
           ErrorCode.MethodNotFound,
-          `Unknown prompt: ${request.params.name}`,
+          `Unknown prompt: ${request.params.name}`
         );
       }
       const args = request.params.arguments;
@@ -284,7 +286,7 @@ export class eMCP {
           if (arg.required && !(args && arg.name in args)) {
             throw new McpError(
               ErrorCode.InvalidRequest,
-              `Missing required argument: ${arg.name}`,
+              `Missing required argument: ${arg.name}`
             );
           }
         }
@@ -295,7 +297,7 @@ export class eMCP {
       } catch (error) {
         throw new McpError(
           ErrorCode.InternalError,
-          `Error loading prompt: ${error}`,
+          `Error loading prompt: ${error}`
         );
       }
       return {
@@ -330,7 +332,7 @@ export class eMCP {
           sse: { endpoint: `/${string}`; port: number };
         } = {
       transportType: "stdio",
-    },
+    }
   ) {
     const capabilities: ServerCapabilities = { logging: {} };
     if (this.#tools.length) {
@@ -344,7 +346,7 @@ export class eMCP {
     }
     const server = new Server(
       { name: this.name, version: this.version },
-      { capabilities },
+      { capabilities }
     );
     this.logger.setServer(server);
     this.setupHandlers(server);

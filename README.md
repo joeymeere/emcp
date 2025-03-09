@@ -1,7 +1,7 @@
 # eMCP
 
 <div>
-  <img src="https://badgen.net/badge/version/1.0.0/orange">
+  <img src="https://badgen.net/badge/version/1.0.1/orange">
   <a href="https://www.npmjs.com/package/emcp" target="_blank">
     <img src="https://img.shields.io/npm/v/emcp">
   </a>
